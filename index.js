@@ -59,7 +59,8 @@ function requestbody(opts) {
         else if (opts.text && this.is('text')) {
           body = yield buddy.text(this, {encoding: opts.encoding, limit: opts.textLimit});
         }
-        else if (opts.multipart && this.is('multipart')) {
+        //else if (opts.multipart && this.is('multipart')) {
+        else if (opts.multipart && this.get('content-type').match(/^multipart/i)) {
           body = yield formy(this, opts.formidable);
         }
         
